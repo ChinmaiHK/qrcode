@@ -7,7 +7,7 @@
         <title>Test QR Scan</title>
     </head>
         <body data-rsssl=1>
-    <script src="./html5-qrcode/html5-qrcode.min.js"></script>
+    <script src="./node_modules/html5-qrcode/html5-qrcode.min.js"></script>
     <style>
         main{
             display: flex;
@@ -40,6 +40,7 @@
             scanner.render(success, error);
 
             function success(result){
+                console.log(result);
                 document.getElementById('result'.innerHTML)=`<h2>Success</h2>
                 <p><a href="${result}">${result}</a></p>`;
                 scanner.clear();
