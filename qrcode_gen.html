@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>QR code generator</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </head>
+    <body>
+        <input type="text" id="user-input">
+        <button id="btn">Generate QR</button>
+        <div id="QR-output"></div>
+        <style>
+            #QR-output{
+               
+                margin-left:200px;
+                margin-right: 200px;
+                margin-top: 200px;
+                margin-bottom: 200px;
+            }
+        </style>
+        <script>
+            document.getElementById('btn').addEventListener('click',function() {
+                const userInput = document.getElementById('user-input').value;
+                const QRElement = document.getElementById('QR-output');
+                QRElement.innerHTML = "";
+                new QRCode(QRElement, {
+                    text:userInput,
+                    width:300,
+                    height:300,
+                    colorLight:'black',
+                    colorDark:"red"
+                });
+            });
+            
+        </script>
+    </body>
+</html>
