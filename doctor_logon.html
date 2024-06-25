@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"  content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+    <h1>Doctor Sign-up</h1>
+    <form class ="form-control">
+        <label for="name">Name</label><br>
+        <input name = "name" type="text" ><br><br>
+        <label for="adhNum">Adhaar Number</label><br>
+        <input name = "adhNum" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' size="100px"><br><br>
+        <label for="certDoct">Certificate Number</label><br>
+        <input name = "certDoct" type="text" ><br><br>
+        <label for="certFile">Upload Your Certificate Here</label><br>
+        <input type="file"  class="file-upload-field" value="" required accept=".pdf"><br><br>
+        <button>Submit</button>
+    </form>
+</div>
+<style>
+    h1{
+        font-family: Arial, Helvetica, sans-serif;
+        text-align:center;
+    }
+    .form-control{
+        border-style:ridge;
+        border-radius: 5px;
+        width:300px;
+    }
+    input[name="name"], input[name="adhNum"], input[name="certDoct"]{
+        width:100px;
+    }
+    label, input{
+        padding-left: 20px;
+    }
+</style>
+</body>
+</html>
