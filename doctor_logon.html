@@ -4,38 +4,83 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible"  content="IE-edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container">
     <h1>Doctor Sign-up</h1>
-    <form class ="form-control">
-        <label for="name">Name</label><br>
-        <input name = "name" type="text" ><br><br>
-        <label for="adhNum">Adhaar Number</label><br>
-        <input name = "adhNum" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' size="100px"><br><br>
-        <label for="certDoct">Certificate Number</label><br>
-        <input name = "certDoct" type="text" ><br><br>
-        <label for="certFile">Upload Your Certificate Here</label><br>
-        <input type="file"  class="file-upload-field" value="" required accept=".pdf"><br><br>
-        <button>Submit</button>
+    <hr>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <div class="card-columns">
+    <form enctype="multipart/form-data">
+        <div class = "form-group">
+            <label for="name">Name</label><br>
+            <input name = "name" id="name" class="form-control" placeholder="Enter your name (only enter alphabet)" type="text" onkeypress='return (event.charCode >= 65 && event.charCode <= 90) ||(event.charCode >= 97 && event.charCode <= 122) ' required>
+        </div><br><br>
+        <div class="form-group">
+            <label for="adhNum">Adhaar Number</label><br>
+        <input name = "adhNum" id="adhNum" class="form-control" placeholder="Enter your adhaar number" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57'  required>
+        </div><br><br>
+        <div class="form-group">
+            <label for="email">Email</label><br>
+            <input type="email" class="form-control" pattern=".+@[a-z]*.com" id="email" placeholder="Enter your email" required>
+          </div><br><br>
+          <div class="form-group">
+            <label for="mob">Mobile Number</label><br>
+        <input name = "mob" id="mob" class="form-control" placeholder="Enter your mobile number" onkeypress='return event.charCode >= 48 && event.charCode <= 57' type="text" required >
+          </div><br><br>
+        <div class="form-group">
+            <label for="certDoct">Certificate ID</label><br>
+            <input name = "certDoct" class="form-control" id="certDoct" onkeypress='return (event.charCode >= 48 && event.charCode <= 57) ||(event.charCode >= 65 && event.charCode <= 90) ||(event.charCode >= 97 && event.charCode <= 122) ' type="text" placeholder="Enter your certificate number (Only alphanumericals are allowed)" >
+        </div><br><br>
+        
+        <!-- 
+        <div class="form-group">
+            <label for="certFile">Upload Your Certificate Here</label><br>
+        <input type="file" name="certFile" id="certFile"  class="file-upload-field" value="" required accept=".pdf">
+        </div><br><br> 
+        -->
+        <div class="form-group">
+            <label for="pwd">Password</label><br>
+            <input type="password" class="form-control" name="pwd" id="pwd" placeholder="Enter password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+        </div><br><br>
+        <button type="submit" id="submit" class="btn btn-default">Submit</button>
+        
     </form>
+</div>
+</div>
+</div>
 </div>
 <style>
     h1{
         font-family: Arial, Helvetica, sans-serif;
         text-align:center;
     }
-    .form-control{
-        border-style:ridge;
+    
+    .container{
+        border-style:solid;
+        background-color: white;
+        width:1000px;
+        margin-left: auto;
+        margin-right:auto;
+        margin-top: auto;
+        margin-bottom: auto;
         border-radius: 5px;
-        width:300px;
+        
     }
-    input[name="name"], input[name="adhNum"], input[name="certDoct"]{
-        width:100px;
+    form{
+        padding:20px;
+        width:800px;
+        border-style:hidden;
+        border-radius: 10px;
     }
-    label, input{
-        padding-left: 20px;
+    #name, #email, #mob, #pwd,#certDoct, #adhNum {
+        width:400px;
+        
     }
 </style>
+<script type="module" src="database.js"></script>
 </body>
 </html>
