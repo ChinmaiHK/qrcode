@@ -1,5 +1,4 @@
-// Import the functions you need from the SDKs you need
-import initializeApp  from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+import {initializeApp}  from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
 import { getDatabase, ref, push, set, orderByChild, equalTo, get, query, update, onValue } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-database.js";
 
@@ -18,7 +17,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
 
-const name = document.getElementById("name").val;
+const name = document.getElementById("name");
 const email =  document.getElementById("email");
 const adhNum =  document.getElementById("adhNum");
 const mob = document.getElementById("mob");
@@ -29,9 +28,8 @@ const pwd = document.getElementById("pwd");
 const subBtn = document.getElementById('submit');
 async function signIn() {
     try {
-        const usersRef = ref(db, 'nsproj'); 
-        const usersSnapshot = await get(usersRef);
-                  const nodePath = `https://nsproj-222ff-default-rtdb.firebaseio.com/`;
+      
+        const userRef = ref(db, 'nsproj'); 
                   const newData = {
                     docName: name.val,
                     emailID:email.val,
@@ -39,25 +37,21 @@ async function signIn() {
                     mobile:mob.val,
                     certificateID:certDoct.val
                 };
-                update(ref(db, nodePath), newData)
-                    .then(() => {
-                        console.log("Attribute updated successfully!");
-                        fetch();
-                    })
-                    .catch((error) => {
-                        console.error("Error updating attribute:", error);
-                    });
-                }
-            
-       
-      catch (error) {
-        console.error("Error retrieving user data:", error);
-      }
+               set(userRef, newData).then(()=>{
+                console.log("Data added successfully");
+               }).catch((error)=>{
+                console.log(error);
+               });
     
 }
+catch(error){
+  console.log(error);
+}
+}
 // Add click event listener
-subBtn.addEventListener('click', function() {
+subBtn.addEventListener('click', function(e) {
     // Call your function here
+    e.preventDefault();
     signIn();
     createUserWithEmailAndPassword(auth, email, pwd)
   .then((userCredential) => {
